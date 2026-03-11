@@ -1,0 +1,98 @@
+/* ---------- BASE ---------- */
+body {
+    margin: 33px;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(120deg, #0f172a, #020617);
+    color: #e5e7eb;
+    min-height: 100vh;
+}
+
+header {
+    padding: 30px;
+    text-align: center;
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+header span {
+    color: #38bdf8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ---------- TABLE ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #020617;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+thead {
+    background: linear-gradient(90deg, #1e3a8a, #2563eb);
+}
+
+th {
+    padding: 16px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #747576;
+}
+
+td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #1e293b;
+    font-size: 0.95rem;
+}
+
+tbody tr {
+    transition: all 0.25s ease;
+}
+
+tbody tr:hover {
+    background: rgba(59,130,246,0.08);
+    transform: scale(1.01);
+}
+
+/* ---------- BADGES ---------- */
+.badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ACTIVO { background: #16a34a; color: #dcfce7; }
+.CONGELADO { background: #eab308; color: #422006; }
+.FINALIZADO { background: #dc2626; color: #fee2e2; }
+
+
+.t {
+    background-color: white;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    font-size: 0.8rem;
+}

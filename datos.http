@@ -1,0 +1,86 @@
+### 1. Crear País
+POST http://localhost:8080/api/v1/countries
+Content-Type: application/json
+
+{
+  "nombre": "España",
+  "codigo": "ESP"
+}
+
+### 2. Crear País
+POST http://localhost:8080/api/v1/countries
+Content-Type: application/json
+
+{
+  "nombre": "Ucrania",
+  "codigo": "UKR"
+}
+
+### 3. Crear País
+POST http://localhost:8080/api/v1/countries
+Content-Type: application/json
+
+{
+  "nombre": "Rusia",
+  "codigo": "RUS"
+}
+
+
+### 4. Crear Conflicto
+POST http://localhost:8080/api/v1/conflicts
+Content-Type: application/json
+
+{
+  "nombre": "Guerra de Ucrania",
+  "fechaInicio": "2022-02-24",
+  "estado": "ACTIVO",
+  "descripcion": "Conflicto actual en Europa del Este.",
+  "codigosPaises": ["UKR", "RUS"]
+}
+
+
+### 5. Crear Conflicto
+POST http://localhost:8080/api/v1/conflicts
+Content-Type: application/json
+
+{
+  "nombre": "Guerra Civil Española",
+  "fechaInicio": "1936-07-17",
+  "estado": "FINALIZADO",
+  "descripcion": "Conflicto histórico.",
+  "codigosPaises": ["ESP"]
+}
+
+
+### 6. Crear Facción
+POST http://localhost:8080/api/v1/factions
+Content-Type: application/json
+
+{
+  "nombre": "Ejército Ruso",
+  "conflictoId": 1,
+  "codigosPaises": ["RUS"]
+}
+
+
+### 7. Crear Facción
+POST http://localhost:8080/api/v1/factions
+Content-Type: application/json
+
+{
+  "nombre": "Ejército Ucraniano",
+  "conflictoId": 1,
+  "codigosPaises": ["UKR"]
+}
+
+
+### 8. Crear Evento
+POST http://localhost:8080/api/v1/events
+Content-Type: application/json
+
+{
+  "fecha": "2022-02-25",
+  "ubicacion": "Kiev",
+  "descripcion": "Intento de toma de la capital.",
+  "conflictoId": 1
+}

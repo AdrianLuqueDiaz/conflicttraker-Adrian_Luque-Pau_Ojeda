@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conflictos</title>
+    <style>
+        table { border-collapse: collapse; width: 80%; margin: 20px auto; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+        th { background: #f2f2f2; }
+    </style>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Lista de Facciones</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Conflicto</th>
+        <th>Países Apoyados</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="c : ${llistaFactions}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.nombre}"></td>
+        <td th:text="${c.conflicto.nombre}"></td>
+        <td>
+            <span th:each="p : ${c.paisesApoyados}"
+                  th:text="${p.nombre} + ' '"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<div class="t">
+    <a href="/">Index</a>
+</div>
+</body>
+</html>
