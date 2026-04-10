@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/countries")
+@CrossOrigin("http://localhost:5173")
 public class CountryController {
 
     private final CountryService servicioPais;

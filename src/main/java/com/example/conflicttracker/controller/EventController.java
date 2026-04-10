@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/events")
+@CrossOrigin("http://localhost:5173")
 public class EventController {
 
     private final EventService servicioEvento;

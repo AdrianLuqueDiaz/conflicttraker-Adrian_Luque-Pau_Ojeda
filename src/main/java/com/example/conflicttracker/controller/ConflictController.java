@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/conflicts")
+@CrossOrigin("http://localhost:5173")
 public class ConflictController {
 
     private final ConflictService servicioConflicto;

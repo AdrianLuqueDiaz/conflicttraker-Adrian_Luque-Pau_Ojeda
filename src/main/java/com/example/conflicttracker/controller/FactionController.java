@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/factions")
+@CrossOrigin("http://localhost:5173")
 public class FactionController {
 
     private final FactionService servicioFaction;
