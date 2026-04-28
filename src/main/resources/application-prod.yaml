@@ -1,12 +1,11 @@
 spring:
-
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://127.0.0.1:5432/conflicttracker # url: jdbc:postgresql://192.168.18.113:5432/conflicttracker para ordenador clase
-    username: pau
-    password: pau
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
-      ddl-auto: validate # Poner 'create' la primera vez que lo instancies a tu base de datos, o error, ya después dejar 'validate'
+      ddl-auto: update
     defer-datasource-initialization: true
