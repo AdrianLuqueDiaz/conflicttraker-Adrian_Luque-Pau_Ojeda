@@ -1,40 +1,34 @@
-# Conflict Tracker API
+# Conflict Tracker Fullstack
 
-Buenas, aquí dejo la entrega de la práctica del Backend. Es la API para gestionar conflictos y países que se pedía en el enunciado.
+Buenas, aquí dejo la entrega de la práctica de despliegue Fullstack. He pasado la aplicación de local a una infraestructura real en la nube, separando el proyecto en tres capas conectadas entre sí para que sea funcional al 100%.
 
-## Qué he usado
-Básicamente lo que pedían los requisitos:
-* Java 17 y Spring Boot 3.
-* Base de datos H2 (en memoria) para que sea fácil de probar sin instalar nada.
-* Maven para las dependencias.
+##  Enlaces del proyecto
+* **Frontend (Vercel):** https://conflicttraker-frontend-adrian-luqu.vercel.app
+* **Backend (Render):** https://conflict-tracker-backend-oiwy.onrender.com/
 
-## Cómo arrancarlo
-Lo más fácil es abrir el proyecto en IntelliJ y darle al **Play** en la clase `ConflicttrackerApplication`.
+##  La Arquitectura
+He fragmentado la aplicación siguiendo el esquema que pedía el enunciado para asegurar que cada capa sea independiente:
+* **Persistence Layer:** Base de datos PostgreSQL alojada en **Supabase**. He usado el Connection Pooler para que la API no pierda la conexión.
+* **Backend Layer:** API REST con Spring Boot desplegada en **Render**.
+* **Frontend Layer:** SPA con Vue 3 optimizada para producción y desplegada en **Vercel**.
 
-Se abrirá en el puerto **8080**.
+##  Variables de Entorno
+Para que el proyecto funcione desde cero, he configurado estas variables en los paneles de control:
 
-## Cómo probarlo 
-Para no tener que meter datos a mano uno a uno, he dejado un archivo llamado **`datos.http`** en la carpeta principal.
-* Ábrelo en IntelliJ.
-* Verás unos triángulos verdes ("Play") al lado de cada petición.
-* Dales en orden (del 1 al 8) y se crearán solos los países, conflictos y facciones de prueba.
+**En Render (Backend):**
+* `SPRING_PROFILES_ACTIVE`: `prod` (para usar el `application-prod.yml`).
+* `DB_URL`: La URL JDBC de mi instancia en Supabase.
+* `DB_USERNAME`: El usuario de la base de datos.
+* `DB_PASSWORD`: La contraseña alfanumérica.
 
-## Endpoints principales
-La API está en `/api/v1`:
-* **Ver todo:** `GET /api/v1/conflicts`
-* **Filtrar activos:** `GET /api/v1/conflicts?status=ACTIVE` (El requisito avanzado).
-* **Ver por país:** `GET /api/v1/countries/{codigo}/conflicts`
-* **Crear:** `POST /api/v1/conflicts` (Tenéis el formato JSON en el archivo `datos.http`).
+**En Vercel (Frontend):**
+* `VITE_API_URL`: La URL de la API en Render (sin la barra final).
 
-## Extras
-* **Base de datos:** Si queréis cotillear la H2, entrad en `http://localhost:8080/h2-console`.
-    * JDBC URL: `jdbc:h2:mem:conflictdb`
-    * User: `sa`
-    * Password: (dejar vacío)
-* **Web de prueba:** He hecho el `index.html` básico con JS nativo que pedía el enunciado. Está en `http://localhost:8080/index.html`. Si habéis cargado datos, saldrán ahí en una tabla.
+## 🛠️ Modificaciones y errores solucionados
+El despliegue ha tenido sus retos, y estos son los cambios clave que he tenido que hacer:
 
-
-El código está separado por capas (Controller, Service, Repository) y uso DTOs para no exponer las entidades directamente, tal cual pedía la rúbrica.
-
-
-Video demostrando:https://www.youtube.com/watch?v=4UzYgdfMC2E
+1. **El Dialecto de Hibernate:** Al conectar con Supabase, Spring no reconocía el dialecto de la base de datos. Lo solucioné forzando `PostgreSQLDialect` en el `application-prod.yml`.
+2. **Símbolos en la contraseña:** La contraseña original de Supabase me daba errores de conexión por los símbolos. Tuve que cambiarla por una **estrictamente alfanumérica** para que Render la aceptara bien.
+3. **SPA Routing (Error 404):** Al refrescar la página en Vercel me daba error 404. He creado el archivo **`vercel.json`** con reglas de `rewrites` para que todas las rutas apunten al `index.html`.
+4. **Seguridad CORS:** He quitado el permiso genérico (`*`) y he configurado el `@CrossOrigin` con mi URL de Vercel para cumplir con los requisitos de seguridad en producción.
+5. **Constraints de datos:** La base de datos fallaba al insertar por los Enums del estado. He ajustado el flujo para que los datos se manden en mayúsculas (ej: `ACTIVO`) para que coincidan con los `CHECK constraints` de PostgreSQL.
