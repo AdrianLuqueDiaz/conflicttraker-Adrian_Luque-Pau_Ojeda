@@ -24,7 +24,7 @@ Para que el proyecto funcione desde cero, he configurado estas variables en los 
 **En Vercel (Frontend):**
 * `VITE_API_URL`: La URL de la API en Render (sin la barra final).
 
-## 🛠️ Modificaciones y errores solucionados
+##  Modificaciones y errores solucionados
 El despliegue ha tenido sus retos, y estos son los cambios clave que he tenido que hacer:
 
 1. **El Dialecto de Hibernate:** Al conectar con Supabase, Spring no reconocía el dialecto de la base de datos. Lo solucioné forzando `PostgreSQLDialect` en el `application-prod.yml`.
