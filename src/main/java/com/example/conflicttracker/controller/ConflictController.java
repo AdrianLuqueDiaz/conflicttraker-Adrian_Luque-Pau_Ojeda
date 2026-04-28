@@ -27,7 +27,7 @@ import com.example.conflicttracker.service.CountryService;
 
 @RestController
 @RequestMapping("/api/v1/conflicts")
-@CrossOrigin("*")
+@CrossOrigin(origins = "https://conflicttraker-frontend-adrian-luqu.vercel.app")
 public class ConflictController {
 
     private final ConflictService servicioConflicto;
